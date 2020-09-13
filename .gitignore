@@ -3,3 +3,5 @@ venv/
 *.log
 arcdps_updater
 last_update_data.txt
+test.html
+.vscode/settings.json
