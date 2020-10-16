@@ -5,3 +5,5 @@ arcdps_updater
 last_update_data.txt
 test.html
 .vscode/settings.json
+webhooks.json
+last_update_data.json
