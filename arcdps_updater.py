@@ -205,19 +205,22 @@ def send_update_message(changelog: typing.List[str],
 
 
 if __name__ == "__main__":
-    logger.info("Starting script...")
-    response = download_website_content()
-    logger.debug("Downloaded website content")
-    changelog = parse_html(response)
-    logger.debug("Parsed website content")
-    last_changes_data = load_last_changes(changelog)
-    logger.debug("Loaded last changelog")
-    update_available = test_for_update(last_changes_data)
-    if not update_available:
-        logger.info("No changes detected, exiting...")
-    else:
-        logger.info("New changes detected")
-        send_update_message(changelog, last_changes_data["changes"])
-        logger.info("Sent discord webhook messages")
-    write_last_changes(changelog)
-    logger.debug("Wrote latest changes data to disk")
+    try:
+        logger.info("Starting script...")
+        response = download_website_content()
+        logger.debug("Downloaded website content")
+        changelog = parse_html(response)
+        logger.debug("Parsed website content")
+        last_changes_data = load_last_changes(changelog)
+        logger.debug("Loaded last changelog")
+        update_available = test_for_update(last_changes_data)
+        if not update_available:
+            logger.info("No changes detected, exiting...")
+        else:
+            logger.info("New changes detected")
+            send_update_message(changelog, last_changes_data["changes"])
+            logger.info("Sent discord webhook messages")
+        write_last_changes(changelog)
+        logger.debug("Wrote latest changes data to disk")
+    except Exception:
+        logger.exception("Unexpected error!")
