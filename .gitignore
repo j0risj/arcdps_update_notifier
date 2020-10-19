@@ -2,8 +2,10 @@ config.ini
 venv/
 *.log
 arcdps_updater
-last_update_data.txt
 test.html
 .vscode/settings.json
 webhooks.json
-last_update_data.json
+last_changes.json
+last_changes.json.old
+.vscode/.ropeproject/config.py
+.vscode/.ropeproject/objectdb
