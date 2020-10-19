@@ -186,18 +186,14 @@ def send_update_message(changelog: typing.List[str],
     }
 
     for webhook in webhooks:
-        try:
-            del body["username"]
-            del body["avatar_url"]
-        except KeyError:
-            pass
-        if webhook["username"]:
-            body["username"] = webhook["username"]
-        if webhook["avatar_url"]:
-            body["avatar_url"] = webhook["avatar_url"]
+        body["username"] = webhook["username"] if webhook["username"] \
+            else config["WEBHOOK"]["default_username"]
+        body["avatar_url"] = webhook["avatar_url"] if \
+            webhook["avatar_url"] else ""
 
         try:
-            response = requests.post(webhook["url"], json=body, timeout=5)
+            response = requests.post(webhook["url"], json=body,
+                                     timeout=5)
             response.raise_for_status()
         except requests.exceptions.Timeout:
             logger.error("Request to discord webhook url timed out"
