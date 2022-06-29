@@ -137,7 +137,7 @@ def test_for_update(last_changes_data: typing.Dict) -> bool:
 
 
 def get_checksum() -> str:
-    url = "https://www.deltaconnected.com/arcdps/x64/d3d9.dll.md5sum"
+    url = "https://www.deltaconnected.com/arcdps/x64/d3d11.dll.md5sum"
     try:
         response = requests.get(url)
         response.raise_for_status()
